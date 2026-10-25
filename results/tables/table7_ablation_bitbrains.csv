@@ -1,0 +1,7 @@
+Model configuration,Avg. task completion latency (ms),SLA satisfaction (%),Carbon footprint reduction (%),Cold-start overhead reduction (%),Generalization on unseen workloads (%),Makespan (s)
+Baseline,1930 ± 45,92.7 ± 0.5,-7.2 ± 8.4,82.8 ± 1.7,98.6 ± 1.0,65.1 ± 0.3
++Context Encoding,1987 ± 110,92.2 ± 0.8,-11.5 ± 5.5,80.5 ± 3.6,97.8 ± 0.3,65.1 ± 0.1
++B+Tree Indexing,2104 ± 135,90.5 ± 1.1,-9.4 ± 6.3,47.7 ± 46.7,96.7 ± 3.7,65.2 ± 0.2
++Weighted MO-PPO,2884 ± 277,84.6 ± 2.9,8.8 ± 3.1,86.4 ± 2.4,97.8 ± 4.9,66.9 ± 1.2
++Trajectory Buffer,2718 ± 130,87.2 ± 1.0,9.2 ± 6.0,82.3 ± 9.4,100.0 ± 0.0,66.8 ± 0.6
+CAPRF++ (full),2873 ± 443,86.7 ± 3.3,8.0 ± 5.8,91.8 ± 6.5,100.0 ± 0.0,68.8 ± 2.3

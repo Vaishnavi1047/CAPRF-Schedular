@@ -1,0 +1,10 @@
+{
+  "seeds": 5,
+  "steps": 150000,
+  "jobs": 12,
+  "datasets": [
+    "bitbrains",
+    "kaggle"
+  ],
+  "skip_ablation": false
+}

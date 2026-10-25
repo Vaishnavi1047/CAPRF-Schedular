@@ -1,0 +1,15 @@
+dataset,scheduler,homogeneous,heterogeneous
+bitbrains,CAPRF++,23.92,26.49
+bitbrains,Greedy-MCT,23.62,19.14
+bitbrains,Green-Greedy,50.72,47.02
+bitbrains,Least-Loaded,22.17,18.83
+bitbrains,Random,58.31,65.99
+bitbrains,Round-Robin,57.47,65.32
+bitbrains,WTC-Greedy,25.26,26.96
+kaggle,CAPRF++,1.89,2.7
+kaggle,Greedy-MCT,0.11,0.01
+kaggle,Green-Greedy,10.43,15.01
+kaggle,Least-Loaded,0.31,0.36
+kaggle,Random,27.84,57.21
+kaggle,Round-Robin,20.4,56.62
+kaggle,WTC-Greedy,4.37,7.83

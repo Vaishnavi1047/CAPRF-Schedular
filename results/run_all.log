@@ -1,0 +1,137 @@
+== training + baselines: 120 jobs
+   trained bitbrains/Baseline/seed1 in 20217s
+   trained bitbrains/Baseline/seed0 in 20217s
+   trained kaggle/CAPRF++ (full)/seed0 in 20381s
+   trained kaggle/CAPRF++ (full)/seed2 in 20382s
+   trained kaggle/CAPRF++ (full)/seed1 in 20385s
+   trained kaggle/CAPRF++ (full)/seed4 in 20386s
+   trained kaggle/CAPRF++ (full)/seed3 in 20386s
+   trained bitbrains/CAPRF++ (full)/seed0 in 20414s
+   trained bitbrains/CAPRF++ (full)/seed1 in 20414s
+   trained bitbrains/CAPRF++ (full)/seed4 in 20416s
+   trained bitbrains/CAPRF++ (full)/seed3 in 20420s
+   trained bitbrains/CAPRF++ (full)/seed2 in 20422s
+   trained bitbrains/Baseline/seed2 in 281s
+   trained bitbrains/Baseline/seed3 in 284s
+   trained kaggle/Baseline/seed0 in 255s
+   trained kaggle/Baseline/seed1 in 255s
+   trained kaggle/Baseline/seed3 in 255s
+   trained kaggle/Baseline/seed2 in 256s
+   trained bitbrains/Baseline/seed4 in 269s
+   trained kaggle/Baseline/seed4 in 254s
+   trained bitbrains/+Context Encoding/seed0 in 273s
+   trained bitbrains/+Context Encoding/seed1 in 279s
+   trained bitbrains/+Context Encoding/seed2 in 278s
+   trained bitbrains/+Context Encoding/seed3 in 278s
+   trained kaggle/+Context Encoding/seed0 in 253s
+   trained bitbrains/+Context Encoding/seed4 in 270s
+   trained kaggle/+Context Encoding/seed1 in 249s
+   trained kaggle/+Context Encoding/seed2 in 249s
+   trained kaggle/+Context Encoding/seed3 in 251s
+   trained kaggle/+Context Encoding/seed4 in 250s
+   trained bitbrains/+B+Tree Indexing/seed0 in 317s
+   trained bitbrains/+B+Tree Indexing/seed1 in 321s
+   trained kaggle/+B+Tree Indexing/seed0 in 295s
+   trained bitbrains/+B+Tree Indexing/seed2 in 320s
+   trained bitbrains/+B+Tree Indexing/seed3 in 320s
+   trained bitbrains/+B+Tree Indexing/seed4 in 323s
+   trained kaggle/+B+Tree Indexing/seed1 in 296s
+   trained kaggle/+B+Tree Indexing/seed2 in 297s
+   trained kaggle/+B+Tree Indexing/seed3 in 296s
+   trained kaggle/+B+Tree Indexing/seed4 in 297s
+   trained bitbrains/+Weighted MO-PPO/seed1 in 330s
+   trained bitbrains/+Weighted MO-PPO/seed0 in 330s
+   trained bitbrains/+Weighted MO-PPO/seed2 in 333s
+   trained kaggle/+Weighted MO-PPO/seed0 in 315s
+   trained bitbrains/+Weighted MO-PPO/seed3 in 341s
+   trained kaggle/+Weighted MO-PPO/seed1 in 317s
+   trained kaggle/+Weighted MO-PPO/seed2 in 316s
+   trained bitbrains/+Weighted MO-PPO/seed4 in 342s
+   trained kaggle/+Weighted MO-PPO/seed3 in 316s
+   heuristic bitbrains/Random/seed0
+   heuristic bitbrains/Random/seed1
+   heuristic bitbrains/Random/seed2
+   heuristic bitbrains/Random/seed3
+   heuristic bitbrains/Random/seed4
+   heuristic bitbrains/Round-Robin/seed0
+   heuristic bitbrains/Round-Robin/seed1
+   heuristic bitbrains/Round-Robin/seed2
+   heuristic bitbrains/Round-Robin/seed3
+   heuristic bitbrains/Round-Robin/seed4
+   heuristic bitbrains/Least-Loaded/seed0
+   heuristic bitbrains/Least-Loaded/seed1
+   heuristic bitbrains/Least-Loaded/seed2
+   heuristic bitbrains/Least-Loaded/seed3
+   heuristic bitbrains/Least-Loaded/seed4
+   heuristic bitbrains/Greedy-MCT/seed0
+   heuristic bitbrains/Greedy-MCT/seed1
+   trained kaggle/+Weighted MO-PPO/seed4 in 315s
+   heuristic bitbrains/Greedy-MCT/seed2
+   heuristic bitbrains/Greedy-MCT/seed3
+   heuristic bitbrains/Greedy-MCT/seed4
+   heuristic bitbrains/Green-Greedy/seed0
+   heuristic bitbrains/Green-Greedy/seed1
+   heuristic bitbrains/Green-Greedy/seed2
+   heuristic bitbrains/Green-Greedy/seed3
+   heuristic bitbrains/Green-Greedy/seed4
+   heuristic bitbrains/WTC-Greedy/seed0
+   heuristic bitbrains/WTC-Greedy/seed1
+   heuristic bitbrains/WTC-Greedy/seed2
+   heuristic bitbrains/WTC-Greedy/seed3
+   heuristic kaggle/Random/seed0
+   heuristic kaggle/Random/seed1
+   heuristic kaggle/Random/seed2
+   heuristic kaggle/Random/seed3
+   heuristic kaggle/Random/seed4
+   heuristic kaggle/Round-Robin/seed0
+   heuristic kaggle/Round-Robin/seed1
+   heuristic bitbrains/WTC-Greedy/seed4
+   heuristic kaggle/Round-Robin/seed2
+   heuristic kaggle/Round-Robin/seed3
+   heuristic kaggle/Round-Robin/seed4
+   heuristic kaggle/Least-Loaded/seed0
+   heuristic kaggle/Least-Loaded/seed1
+   heuristic kaggle/Least-Loaded/seed2
+   heuristic kaggle/Least-Loaded/seed3
+   heuristic kaggle/Least-Loaded/seed4
+   heuristic kaggle/Greedy-MCT/seed0
+   heuristic kaggle/Greedy-MCT/seed1
+   heuristic kaggle/Greedy-MCT/seed2
+   heuristic kaggle/Greedy-MCT/seed3
+   heuristic kaggle/Greedy-MCT/seed4
+   heuristic kaggle/Green-Greedy/seed0
+   heuristic kaggle/Green-Greedy/seed1
+   heuristic kaggle/Green-Greedy/seed2
+   heuristic kaggle/Green-Greedy/seed3
+   heuristic kaggle/Green-Greedy/seed4
+   heuristic kaggle/WTC-Greedy/seed0
+   heuristic kaggle/WTC-Greedy/seed1
+   heuristic kaggle/WTC-Greedy/seed2
+   heuristic kaggle/WTC-Greedy/seed3
+   heuristic kaggle/WTC-Greedy/seed4
+   trained bitbrains/+Trajectory Buffer/seed0 in 460s
+   trained bitbrains/+Trajectory Buffer/seed1 in 460s
+   trained bitbrains/+Trajectory Buffer/seed2 in 452s
+   trained bitbrains/+Trajectory Buffer/seed3 in 453s
+   trained kaggle/+Trajectory Buffer/seed0 in 401s
+   trained bitbrains/+Trajectory Buffer/seed4 in 425s
+   trained kaggle/+Trajectory Buffer/seed1 in 398s
+   trained kaggle/+Trajectory Buffer/seed2 in 397s
+   trained kaggle/+Trajectory Buffer/seed3 in 393s
+   trained kaggle/+Trajectory Buffer/seed4 in 394s
+== follow-up experiments: 14 jobs
+   homogeneity kaggle seed0
+   homogeneity kaggle seed3
+   homogeneity kaggle seed2
+   homogeneity kaggle seed1
+   homogeneity kaggle seed4
+   index benchmark
+   homogeneity bitbrains seed4
+   homogeneity bitbrains seed3
+   homogeneity bitbrains seed0
+   homogeneity bitbrains seed1
+   homogeneity bitbrains seed2
+   task scaling kaggle seed0
+   task scaling bitbrains seed0
+   device scaling kaggle seed0
+all done in 364.2 min
