@@ -118,6 +118,12 @@ pair by pair (this pairing is what the Wilcoxon tests use).
 
 Full tables and figures: `results/REPORT.md`, `results/tables/`, `results/figures/`.
 
+These are the results after the full training runs (150,000 training steps, 5 seeds). For each seed,
+the checkpoint with the best validation reward is evaluated on the untouched test split. CAPRF++ reaches
+86.7 ± 3.3% SLA on Bitbrains and 97.3 ± 1.9% on Kaggle, with cold-start reductions of 91.8 ± 6.5%
+and 89.5 ± 7.5% respectively. The corresponding unseen-workload generalization is 100.0 ± 0.0% and
+98.6 ± 2.1%.
+
 | Dataset | Scheduler | SLA % | Latency (ms) | Carbon (g) | Cold-start reduction % | Generalization % |
 |---|---|---|---|---|---|---|
 | Bitbrains | **CAPRF++** | 86.7 | 2,873 | 85.7 | 91.8 | 100.0 |
@@ -145,6 +151,29 @@ p < 10⁻⁶); the latency and SLA differences go the other way.
 queries lie far from the resource manifold, so iDistance prunes little and is slower than a vectorised
 NumPy scan (`results/figures/fig_index_benchmark.png`). Candidate quality comes mainly from the
 availability-keyed B+-tree.
+
+## Dashboard
+
+`app/dashboard.py` provides a Streamlit dashboard over the same workloads, trained checkpoints,
+simulation code and generated experiment results used above.
+
+```bash
+.venv/bin/streamlit run app/dashboard.py
+```
+
+The dashboard contains four views:
+
+- **Overview** — CAPRF++ architecture, paper-to-code mapping, workload split and held-out task types.
+- **Results** — 5-seed results, baseline comparisons, ablations, training curves, prewarming,
+  scalability, statistical tests and the B+-tree benchmark from `results/`.
+- **Live simulation** — runs CAPRF++ and the baseline schedulers on test tasks at a selected load and
+  compares SLA, latency, carbon, energy and cold-start behaviour.
+- **Decision inspector** — steps through individual scheduling decisions and exposes the B+-tree
+  candidates, WTC feasible set, predicted costs, PPO probabilities, selected resource, prewarming
+  decisions and final execution outcome.
+
+The dashboard reads trained checkpoints from `results/runs/` and analysis outputs from `results/`,
+so the displayed results stay tied to the experiment pipeline rather than a separate demo implementation.
 
 ## Notes on the paper (useful for a viva)
 
