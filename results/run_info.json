@@ -1,7 +1,7 @@
 {
-  "seeds": 5,
-  "steps": 150000,
-  "jobs": 12,
+  "seeds": 1,
+  "steps": 40000,
+  "jobs": 1,
   "datasets": [
     "bitbrains",
     "kaggle"

@@ -1,7 +1,7 @@
 Metric,Dataset 1 (GWA-T-12 Bitbrains),Dataset 2 (Kaggle Cloud Task Scheduling)
-Avg. task completion latency (ms),2873 ± 443,2756 ± 539
-SLA satisfaction (%),86.7 ± 3.3,97.3 ± 1.9
-Carbon footprint reduction (%),8.0 ± 5.8,9.8 ± 4.2
-Cold-start overhead reduction (%),91.8 ± 6.5,89.5 ± 7.5
-Generalization on unseen workloads (%),100.0 ± 0.0,98.6 ± 2.1
-Makespan (s),68.8 ± 2.3,24.5 ± 2.5
+Avg. task completion latency (ms),2966,2257
+SLA satisfaction (%),85.7,98.5
+Carbon footprint reduction (%),12.9,9.1
+Cold-start overhead reduction (%),94.9,91.0
+Generalization on unseen workloads (%),100.0,99.2
+Makespan (s),67.2,22.3
