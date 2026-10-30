@@ -167,16 +167,6 @@ The dashboard contains three main views:
 The dashboard reads trained checkpoints and analysis outputs from `results/`, so the displayed results stay tied to the experiment pipeline rather than a separate demo implementation.
 
 
-## Notes on the paper (useful for a viva)
-
-- Dataset 1 is reported at 25.0 ms latency and 70.2% carbon reduction in Table 3, but 12.5 ms and
-  88.8% in Table 4.
-- Table 6 reports Wilcoxon p ≈ 0.001 from 5 paired runs. The exact two-sided minimum with n = 5 is
-  2/2⁵ = 0.0625, so these p-values cannot come from 5 runs.
-- The data-availability statement says no datasets were analysed, yet two are used.
-- The simulator and baseline implementations are not published, so absolute numbers cannot be
-  reproduced. Our numbers come from our own simulator built to Tables 1–2.
-
 ## Layout
 
 ```
