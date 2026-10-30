@@ -16,13 +16,19 @@ uv venv --python 3.11 .venv && uv pip install --python .venv/bin/python -r requi
 #   (behind a corporate proxy: export UV_NATIVE_TLS=1 first)
 
 .venv/bin/python scripts/download_data.py          # both datasets  -> data/raw/
-.venv/bin/python -m caprf.experiments.run_all      # train + evaluate everything (5 seeds, ~40 min on 12 cores)
+.venv/bin/python -m caprf.experiments.run_all      # train + evaluate experiments
 .venv/bin/python -m caprf.experiments.analyze      # tables, figures, statistics -> results/REPORT.md
 .venv/bin/streamlit run app/dashboard.py           # presentation dashboard
 .venv/bin/python -m pytest -q                      # unit tests (B+-tree, iDistance)
 ```
+The final experiment configuration uses **5 seeds, 150,000 training steps and a 120-worker experiment pool**.
 
-A quicker pass: `python -m caprf.experiments.run_all --seeds 1 --steps 40000`.
+A quicker pass can be run with:
+
+```bash
+python -m caprf.experiments.run_all --seeds 1 --steps 40000
+```
+
 
 ## Datasets
 
@@ -88,10 +94,10 @@ the best checkpoint; the test window is never used for training or selection.
 
 ## Seeds: what is random and what is fixed
 
-Every configuration is run with 5 random seeds (0–4), as in the paper (§4.3.1), and results are
-reported as mean ± std. A seed only changes the *randomness*; the problem itself is identical.
+The final experiment configuration uses **5 random seeds (0–4)**. A seed changes stochastic aspects of training and simulation while preserving the underlying scheduling problem.
 
-**Varies with the seed (CAPRF++ and the other learned variants):**
+**Varies with the seed for CAPRF++ and other learned variants:**
+
 - initial neural-network weights (`torch.manual_seed(seed)`);
 - which 4,000-task windows of the training period are drawn as episodes, and the random load of each
   episode (domain randomisation);
@@ -107,50 +113,41 @@ reported as mean ± std. A seed only changes the *randomness*; the problem itsel
 - the cluster hardware (the same 200 machines and their parameters);
 - all hyper-parameters.
 
-**Baselines** (Round-Robin, Greedy-MCT, …) are deterministic rules, so only the simulator's runtime noise
-changes between their seeds. That is why their ± values are tiny, whereas CAPRF++'s ± also includes
-training-to-training variation.
+**Baselines** (Round-Robin, Greedy-MCT, …) are deterministic rules, so only the simulator's runtime noise changes between their seeds. CAPRF++ and the other learned variants additionally include training-to-training variation arising from stochastic initialization, exploration and training.
 
-For a given seed, CAPRF++ and every baseline see the same runtime noise, so their results can be compared
-pair by pair (this pairing is what the Wilcoxon tests use).
+For a given seed, CAPRF++ and every baseline see the same runtime noise, so their results can be compared pair by pair (this pairing is what the Wilcoxon tests use).
 
-## Results (5 seeds, mean)
+
+## Results (5 seeds)
 
 Full tables and figures: `results/REPORT.md`, `results/tables/`, `results/figures/`.
 
-These are the results after the full training runs (150,000 training steps, 5 seeds). For each seed,
-the checkpoint with the best validation reward is evaluated on the untouched test split. CAPRF++ reaches
-86.7 ± 3.3% SLA on Bitbrains and 97.3 ± 1.9% on Kaggle, with cold-start reductions of 91.8 ± 6.5%
-and 89.5 ± 7.5% respectively. The corresponding unseen-workload generalization is 100.0 ± 0.0% and
-98.6 ± 2.1%.
+These are the results after the full training runs (150,000 training steps, 5 seeds). For each seed, the checkpoint with the best validation reward is evaluated on the untouched test split. CAPRF++ reaches 85.7% SLA on Bitbrains and 98.5% on Kaggle, with cold-start reductions of 94.9% and 91.0% respectively. The corresponding unseen-workload generalization is 100.0% and 99.2%.
 
-| Dataset | Scheduler | SLA % | Latency (ms) | Carbon (g) | Cold-start reduction % | Generalization % |
+| Dataset | Scheduler | SLA % | Latency (ms) | Carbon reduction % | Cold-start reduction % | Generalization % |
 |---|---|---|---|---|---|---|
-| Bitbrains | **CAPRF++** | 86.7 | 2,873 | 85.7 | 91.8 | 100.0 |
-| Bitbrains | Least-Loaded | 92.7 | 1,939 | 93.1 | 0 (reference) | 99.0 |
-| Bitbrains | Greedy-MCT | 92.6 | 1,886 | 106.6 | 78.0 | 98.6 |
-| Bitbrains | WTC-Greedy | 83.5 | 4,436 | 73.9 | 83.5 | 100.0 |
-| Kaggle | **CAPRF++** | 97.3 | 2,756 | 32.7 | 89.5 | 98.6 |
-| Kaggle | Least-Loaded | 99.6 | 1,515 | 36.3 | 0 (reference) | 99.9 |
-| Kaggle | Greedy-MCT | 100.0 | 1,529 | 37.2 | 56.7 | 100.0 |
-| Kaggle | WTC-Greedy | 91.9 | 3,746 | 28.8 | 67.1 | 99.6 |
+| Bitbrains | **CAPRF++** | 85.7 | 2,966 | 12.9 | 94.9 | 100.0 |
+| Bitbrains | Least-Loaded | 92.9 | 1,927 | 0.0 | 0.0 | 98.7 |
+| Bitbrains | Greedy-MCT | 92.8 | 1,874 | -14.6 | 79.4 | 98.6 |
+| Bitbrains | WTC-Greedy | 83.5 | 4,439 | 20.7 | 83.9 | 100.0 |
+| Kaggle | **CAPRF++** | 98.5 | 2,257 | 9.1 | 91.0 | 99.2 |
+| Kaggle | Least-Loaded | 99.5 | 1,518 | 0.0 | 0.0 | 99.8 |
+| Kaggle | Greedy-MCT | 100.0 | 1,525 | -2.7 | 57.0 | 100.0 |
+| Kaggle | WTC-Greedy | 92.3 | 3,740 | 20.7 | 67.4 | 100.0 |
+
 
 **What holds up from the paper's claims.**
 - Predictive prewarming cuts cold-start delay by about 90%, the most of any scheduler.
 - Generalization to unseen task types is 99–100%.
-- Carbon is 8–10% lower than Least-Loaded and about 20% lower than Greedy-MCT.
-- A scheduling decision takes about 0.6 ms (p99 about 2.5 ms).
+- Carbon is about 9–13% lower than Least-Loaded, and CAPRF++ also uses less carbon than Greedy-MCT on both datasets.
+- A scheduling decision takes about 2.88 ms on Bitbrains and 2.95 ms on Kaggle, with p99 values of about 5.11 ms and 5.41 ms respectively.
 
-**What does not.** CAPRF++ does not beat every baseline on every metric at once. It sits in the middle
-of the SLA-versus-carbon trade-off: about 6 SLA points (Bitbrains) or 2 points (Kaggle) below the
-latency-greedy schedulers, with clearly better SLA and latency than the carbon-greedy ones. The carbon
-and cold-start gains over the strong baselines are significant (Wilcoxon over 50 paired intervals,
-p < 10⁻⁶); the latency and SLA differences go the other way.
 
-**B+-tree.** It is correct (unit-tested, O(log N) updates), but with the learned embeddings the task
-queries lie far from the resource manifold, so iDistance prunes little and is slower than a vectorised
-NumPy scan (`results/figures/fig_index_benchmark.png`). Candidate quality comes mainly from the
-availability-keyed B+-tree.
+**What does not.** CAPRF++ does not beat every baseline on every metric at once. It sits in the middle of the SLA-versus-carbon trade-off: about 7 SLA points (Bitbrains) or 1–2 points (Kaggle) below the latency-greedy schedulers, with clearly better SLA and latency than the carbon-greedy ones. Paired interval-level Wilcoxon tests against Greedy-MCT show significant differences for carbon (p = 0.0186 on Bitbrains and p = 0.0098 on Kaggle) and cold-start overhead (p = 0.0049 and p = 0.0010 respectively); the statistical claims are limited to these interval-level comparisons.
+
+
+**B+-tree.** It is correct (unit-tested, O(log N) updates), but with the learned embeddings the task queries lie far from the resource manifold, so iDistance prunes little and is slower than a vectorised NumPy scan (`results/figures/fig_index_benchmark.png`). Candidate quality comes mainly from the availability-keyed B+-tree.
+
 
 ## Dashboard
 
@@ -161,19 +158,14 @@ simulation code and generated experiment results used above.
 .venv/bin/streamlit run app/dashboard.py
 ```
 
-The dashboard contains four views:
+The dashboard contains three main views:
 
-- **Overview** — CAPRF++ architecture, paper-to-code mapping, workload split and held-out task types.
-- **Results** — 5-seed results, baseline comparisons, ablations, training curves, prewarming,
-  scalability, statistical tests and the B+-tree benchmark from `results/`.
-- **Live simulation** — runs CAPRF++ and the baseline schedulers on test tasks at a selected load and
-  compares SLA, latency, carbon, energy and cold-start behaviour.
-- **Decision inspector** — steps through individual scheduling decisions and exposes the B+-tree
-  candidates, WTC feasible set, predicted costs, PPO probabilities, selected resource, prewarming
-  decisions and final execution outcome.
+- **Live Interactive Demo** — runs CAPRF++ and the baseline schedulers on test tasks and compares their scheduling behaviour and performance.
+- **Explainability & Walkthrough** — exposes the scheduling pipeline, candidate selection, WTC filtering, PPO decisions and prewarming behaviour.
+- **Official Experimental Results** — presents the generated results, baseline comparisons, ablations, training curves, prewarming, scalability, statistical tests and B+-tree benchmark from `results/`.
 
-The dashboard reads trained checkpoints from `results/runs/` and analysis outputs from `results/`,
-so the displayed results stay tied to the experiment pipeline rather than a separate demo implementation.
+The dashboard reads trained checkpoints and analysis outputs from `results/`, so the displayed results stay tied to the experiment pipeline rather than a separate demo implementation.
+
 
 ## Notes on the paper (useful for a viva)
 
