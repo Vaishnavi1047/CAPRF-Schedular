@@ -137,9 +137,9 @@ Baselines are deterministic rules, so only runtime noise varies for them, hence 
 
 ## Figures
 ![training](figures/fig4_training_progress.png)
-![reuse](figures/fig3_executor_reuse_vs_startup.png)
 ![intervals1](figures/fig5_intervals_bitbrains.png)
 ![intervals2](figures/fig6_intervals_kaggle.png)
 ![tasks](figures/fig7_task_scaling.png)
 ![devices](figures/fig8_device_scaling.png)
 ![index](figures/fig_index_benchmark.png)
+<img width="2874" height="1013" alt="download" src="https://github.com/user-attachments/assets/b24d7429-7a86-4af3-910d-05a1967d7328" />
